@@ -1,0 +1,156 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* Fixed Layout CSS starts here */
+/* Add this in your CSS file or a <style> tag */
+
+@keyframes dribble {
+  0% {
+    transform: translateY(0);
+  }
+
+  25% {
+    transform: translateY(-8px);
+  }
+
+  50% {
+    transform: translateY(0);
+  }
+
+  75% {
+    transform: translateY(-4px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.footer-icon {
+  transition: transform 0.3s ease;
+}
+
+.footer-icon:hover {
+  animation: dribble 0.9s ease infinite;
+}
+
+/* Text animation */
+.footer-text {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.footer-icon:hover+.footer-text {
+  transform: scale(1.1) !important;
+  /* slightly enlarge text */
+  /* color: #800080 !important;        change text color */
+}
+
+/* Fixed layout css ends here */
+/* responsive for mobile screen starts here */
+/* Hide text by default on small screens */
+@media only screen and (max-width: 424px) {
+  .footer-text {
+    display: none;
+  }
+}
+
+/* Modal background */
+.modal-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+/* Modal content */
+.modal-content {
+  background: #fff;
+  padding: 20px 30px;
+  border-radius: 12px;
+  text-align: center;
+  min-width: 200px;
+}
+
+.modal-content a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #000;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  font-family: 'Brush Script MT', cursive;
+}
+
+.modal-close {
+  margin-top: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* responsive for mobile ends here */
+/* Default gap between icons for desktop */
+.footer-container {
+  gap: 50px;
+}
+
+/* Hide text and reduce gap on mobile ≤425px */
+@media only screen and (max-width: 430px) {
+  .footer-text {
+    display: none !important;
+  }
+
+  .footer-container {
+    gap: 20px !important; /* reduced gap for mobile */
+  }
+}
