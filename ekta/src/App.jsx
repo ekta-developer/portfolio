@@ -64,7 +64,6 @@ function App() {
             zIndex: 1000,
           }}
         >
-          Hiii this is text
         </header>
 
         <main
