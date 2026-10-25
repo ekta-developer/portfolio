@@ -1,0 +1,258 @@
+from pathlib import Path
+
+/* css = r'''Ekta portfolio enhancements — append this file to the bottom of styles.css */
+html {
+  min-height: 100%;
+  scroll-behavior: smooth;
+  background: #eee8ff;
+}
+body {
+  min-height: 100vh;
+  position: relative;
+  isolation: isolate;
+  background: transparent !important;
+}
+
+/* Fixed scenic image covers the viewport, independent of .page-wrap */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background-image: linear-gradient(
+      135deg,
+      rgba(250, 248, 255, 0.22),
+      rgba(238, 229, 255, 0.12) 48%,
+      rgba(255, 255, 255, 0.1)
+    ),
+    url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=2200&q=90');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: translateZ(0) scale(1.035);
+  animation: scenic-drift 28s ease-in-out infinite alternate;
+  will-change: transform;
+}
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(250, 248, 255, 0.06),
+    rgba(248, 245, 255, 0.13) 48%,
+    rgba(255, 255, 255, 0.07)
+  );
+}
+main,
+.page-wrap,
+.about,
+.skills-section,
+.experience,
+.projects {
+  background-color: transparent !important;
+}
+
+/* Floating banner card */
+.hero-art {
+  animation: banner-float 7s ease-in-out infinite;
+  transform-origin: center;
+}
+.hero-art .card-front,
+.hero-art .card-back {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.66);
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  box-shadow: 0 24px 70px rgba(69, 42, 120, 0.2);
+  transition: transform 350ms ease, box-shadow 350ms ease;
+}
+.hero-art:hover .card-front {
+  transform: translateY(-8px) rotate(1deg);
+  box-shadow: 0 30px 85px rgba(69, 42, 120, 0.28);
+}
+.hero-art:hover .card-back {
+  transform: translate(-4px, -5px) rotate(-2deg);
+}
+
+/* Dribbble-inspired animated project cards */
+.project-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.76);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 12px 35px rgba(42, 24, 80, 0.1);
+  transition: transform 380ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 380ms ease, border-color 380ms ease;
+}
+.project-card::before {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  top: -70%;
+  left: -55%;
+  width: 42%;
+  height: 240%;
+  pointer-events: none;
+  transform: rotate(24deg) translateX(-180%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.68),
+    transparent
+  );
+  transition: transform 750ms ease;
+}
+.project-card:hover {
+  transform: translateY(-10px) scale(1.015);
+  border-color: rgba(153, 111, 232, 0.65);
+  box-shadow: 0 26px 60px rgba(69, 42, 120, 0.2);
+}
+.project-card:hover::before {
+  transform: rotate(24deg) translateX(520%);
+}
+.project-visual {
+  overflow: hidden;
+  transition: transform 500ms ease, filter 500ms ease;
+}
+.project-card:hover .project-visual {
+  transform: scale(1.035);
+  filter: saturate(1.12);
+}
+.project-window {
+  transition: transform 500ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.project-card:hover .project-window {
+  transform: translateY(-4px) rotate(-1deg);
+}
+
+/* Translucent experience/skill cards reveal more of the landscape */
+.experience-card,
+.skill-card {
+  background: rgba(255, 255, 255, 0.78) !important;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(13px);
+  -webkit-backdrop-filter: blur(13px);
+  box-shadow: 0 16px 42px rgba(45, 26, 84, 0.11);
+}
+.experience-card {
+  transition: transform 300ms ease, box-shadow 300ms ease;
+}
+.experience-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 48px rgba(45, 26, 84, 0.17);
+}
+
+/* Hobbies section */
+.hobbies-section {
+  padding: clamp(3.5rem, 7vw, 6rem) clamp(1.25rem, 5vw, 5rem);
+}
+.hobbies-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+.hobby-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  min-height: 220px;
+  padding: 1.5rem;
+  color: #211735;
+  text-decoration: none;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  background: rgba(255, 255, 255, 0.79);
+  backdrop-filter: blur(13px);
+  -webkit-backdrop-filter: blur(13px);
+  box-shadow: 0 12px 35px rgba(42, 24, 80, 0.1);
+  transition: transform 350ms ease, box-shadow 350ms ease,
+    border-color 350ms ease;
+}
+.hobby-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(153, 111, 232, 0.65);
+  box-shadow: 0 24px 55px rgba(69, 42, 120, 0.18);
+}
+.hobby-icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 15px;
+  color: #6d43bb;
+  background: linear-gradient(135deg, #eee5ff, #faf7ff);
+}
+.hobby-card h3 {
+  margin: 0;
+  font-size: 1.12rem;
+}
+.hobby-card p {
+  margin: 0;
+  line-height: 1.65;
+  color: #625a70;
+}
+.hobby-visit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: auto;
+  color: #7145bd;
+  font-weight: 650;
+}
+
+@keyframes scenic-drift {
+  0% {
+    transform: translate3d(-0.5%, 0, 0) scale(1.035);
+  }
+  100% {
+    transform: translate3d(0.5%, -0.5%, 0) scale(1.07);
+  }
+}
+@keyframes banner-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+@media (max-width: 760px) {
+  body::before {
+    background-position: center;
+    animation-duration: 40s;
+  }
+  .hobbies-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-art {
+    animation-duration: 9s;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  body::before,
+  .hero-art {
+    animation: none !important;
+  }
+  .project-card,
+  .project-visual,
+  .project-window,
+  .experience-card,
+  .hobby-card {
+    transition: none !important;
+  }
+}
+/* '''
+path = Path("/mnt/data/styles-portfolio-enhancements.css")
+path.write_text(css, encoding="utf-8")
+print(f"Created: {path}") */

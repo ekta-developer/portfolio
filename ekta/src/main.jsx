@@ -22,7 +22,15 @@ import {
 } from 'lucide-react'
 // import { Github } from 'lucide-react'
 import './style.css'
-import { FaLinkedin, FaGithub, FaCode, FaYoutube, FaWordpress , FaExternalLinkAlt } from 'react-icons/fa'
+import {
+  FaLinkedin,
+  FaGithub,
+  FaCode,
+  FaYoutube,
+  FaWordpress,
+  FaExternalLinkAlt
+} from 'react-icons/fa'
+import ConnectForm from './components/connectionform'
 
 const skills = [
   {
@@ -171,7 +179,7 @@ const projects = [
       'Created a Node.js CLI tool using REST APIs to fetch and display popular, top-rated, and upcoming movie information.',
     url: 'https://github.com/ekta-developer',
     tag: 'Node.js · Express · REST APIs'
-  },
+  }
   // {
   //   name: 'Demo Chat-bot',
   //   description:
@@ -237,7 +245,7 @@ function Header () {
         <a href='#projects'>Projects</a>
         {/* <a href='#hobbies'>Hobbies</a> */}
         <a className='contact-link' href='#contact'>
-          Get in touch <ArrowUpRight size={15} />
+          Make contact <ArrowUpRight size={15} />
         </a>
       </nav>
     </header>
@@ -528,13 +536,14 @@ function Contact () {
           about computing education? I'd love to hear from you.
         </p>
         <a className='primary-btn' href='mailto:eekta.srivastava2000@gmail.com'>
-          <Mail size={17} /> Get in touch <ArrowUpRight size={16} />
+          <Mail size={17} /> Make contact <ArrowUpRight size={16} />
         </a>
         <div className='contact-location'>
           <MapPin size={15} /> Lucknow, Uttar Pradesh, India
         </div>
       </div>
-      <div className='contact-decoration'>
+      <ConnectForm />
+      {/* <div className='contact-decoration'>
         <div className='deco-circle' />
         <div className='deco-square' />
         <span>
@@ -544,7 +553,7 @@ function Contact () {
           <br />
           <b>work.</b>
         </span>
-      </div>
+      </div> */}
     </section>
   )
 }
